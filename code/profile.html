@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Helvetica", sans-serif;
+                background: white;
+            }
+
+            .header {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 25px 60px;
+                box-sizing: border-box;
+            }
+
+            .logo-left img {
+                height: 35px;
+                object-fit: contain;
+            }
+
+            nav a {
+                margin-left: 35px;
+                text-decoration: none;
+                color: black;
+                font-size: 17px;
+                font-weight: 600;
+                position: relative;
+            }
+
+            nav a.active {
+                color: black;
+                font-weight: 700;
+                padding: 3px 6px;
+                background: #f3e0f5;
+                border-radius: 4px;
+            }
+
+            .member-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                padding: 20px;
+                max-width: 700px; /* 3개 항목 + 간격 */
+                margin: 0 auto;
+            }
+
+            .profile-item {
+                position: relative;
+                width: 200px; /* 이미지 너비 */
+                height: 300px; /* 이미지 높이 */
+                overflow: hidden;
+                cursor: pointer;
+            }
+
+            /* 호버 효과 관련 CSS (이전과 동일) */
+            .profile-item .default-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            .profile-item .hover-info {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                z-index: 10;
+                background-color: white;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            .profile-item .hover-info img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .profile-item:hover .default-image {
+                opacity: 0;
+            }
+
+            .profile-item:hover .hover-info {
+                opacity: 1;
+            }
+
+            :root {
+                --bg: #ffe9f6;
+                --pink: #d76fa1; /* 진한 핑크 */
+                --pink-muted: #d76fa1; /* 살짝 흐린 핑크 */
+                --max-width: 1200px;
+            }
+
+            .site-footer {
+                background: var(--bg);
+                color: var(--pink);
+                padding: 28px 20px; /* 위아래 동일 여백 */
+                font-family: "Inter", "Noto Sans KR", sans-serif;
+                font-size: 13px; /* 기본 글자 크기 축소 */
+                margin-top: 30px;
+            }
+
+            .footer-inner {
+                max-width: var(--max-width);
+                margin: 0 auto;
+                display: flex;
+                align-items: center; /* 위아래 균형 잡힌 정렬 */
+                justify-content: space-between;
+                gap: 24px;
+            }
+
+            /* LEFT: 브랜드 */
+            .footer-left .brand {
+                margin: 0;
+                font-size: 14px; /* 더 작게 */
+                letter-spacing: 2px;
+                font-weight: 600;
+                color: var(--pink);
+                text-transform: uppercase;
+            }
+            .footer-left .tagline {
+                margin: 6px 0 0 0;
+                color: var(--pink-muted);
+                font-size: 12px;
+                line-height: 1.25;
+            }
+
+            /* RIGHT: 저작권 문구 */
+            .footer-right {
+                text-align: right;
+            }
+            .footer-right .legal-line {
+                margin: 0;
+                color: var(--pink-muted);
+                font-size: 12px;
+                line-height: 1.3;
+            }
+
+            /* 반응형 */
+            @media (max-width: 720px) {
+                .footer-inner {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    gap: 10px;
+                }
+                .footer-right {
+                    text-align: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <a href="index.html">
+                <div class="logo-left">
+                    <img src="Illit_logo.png" alt="left logo" /></div
+            ></a>
+            <nav>
+                <a href="gallery.html">GALLERY</a>
+                <a href="items.html">ITEMS</a>
+                <a href="profile.html" class="active">PROFILE</a>
+                <a href="discography1.html">DISCOGRAPHY</a>
+                <a href="video1.html">VIDEO</a>
+            </nav>
+        </header>
+
+        <br /><br /><br /><br />
+        <div class="member-container">
+            <div id="yunah-profile" class="profile-item">
+                <img class="default-image" src="pro1.png" alt="윤아 사진" />
+                <div class="hover-info">
+                    <img src="file1.png" alt="윤아 프로필 정보" />
+                </div>
+            </div>
+
+            <div id="minju-profile" class="profile-item">
+                <img class="default-image" src="pro2.png" alt="민주 사진" />
+                <div class="hover-info">
+                    <img src="file2.png" alt="민주 프로필 정보" />
+                </div>
+            </div>
+
+            <div id="moka-profile" class="profile-item">
+                <img class="default-image" src="pro3.png" alt="모카 사진" />
+                <div class="hover-info">
+                    <img src="file3.png" alt="모카 프로필 정보" />
+                </div>
+            </div>
+
+            <div id="wonhee-profile" class="profile-item">
+                <img class="default-image" src="pro5.png" alt="원희 사진" />
+                <div class="hover-info">
+                    <img src="file4.png" alt="원희 프로필 정보" />
+                </div>
+            </div>
+
+            <div id="iroha-profile" class="profile-item">
+                <img class="default-image" src="pro4.png" alt="이로하 사진" />
+                <div class="hover-info">
+                    <img src="file5.png" alt="이로하 프로필 정보" />
+                </div>
+            </div>
+        </div>
+        <br /><br /><br /><br />
+        <footer class="site-footer" role="contentinfo">
+            <div class="footer-inner">
+                <!-- LEFT: first two lines -->
+                <div class="footer-left">
+                    <h4 class="brand">NOT CUTE ANYMORE</h4>
+                    <p class="tagline">
+                        A conceptual reinterpretation of I’LL-IT.
+                    </p>
+                </div>
+
+                <!-- RIGHT: last three lines -->
+                <div class="footer-right">
+                    <p class="legal-line">© 2025 Not Cute Anymore Project.</p>
+                    <p class="legal-line">
+                        This is an independent, fan-made portfolio site.
+                    </p>
+                    <p class="legal-line">
+                        All images, videos, and trademarks belong to their
+                        respective owners.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

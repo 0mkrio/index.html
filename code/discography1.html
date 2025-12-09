@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Helvetica", sans-serif;
+                background: white;
+            }
+
+            .header {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 25px 60px;
+                box-sizing: border-box;
+            }
+
+            .logo-left img {
+                height: 35px;
+                object-fit: contain;
+            }
+
+            nav a {
+                margin-left: 35px;
+                text-decoration: none;
+                color: black;
+                font-size: 17px;
+                font-weight: 600;
+                position: relative;
+            }
+
+            nav a.active {
+                color: black;
+                font-weight: 700;
+                padding: 3px 6px;
+                background: #f3e0f5;
+                border-radius: 4px;
+            }
+
+            body {
+                margin: 0;
+                font-family: "Noto Sans KR", sans-serif;
+                background: #ffffff;
+                color: #222;
+            }
+
+            /* ---------- 상단 탭 ---------- */
+            .album-tabs {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                gap: 26px;
+                padding: 30px 0 20px;
+            }
+            .album-tabs button {
+                padding: 8px 40px;
+                font-size: 14px;
+                border-radius: 20px;
+                border: 1px solid #cfcfcf;
+                background: #fff;
+                cursor: pointer;
+            }
+            .album-tabs button:hover {
+                background: #f2f2f2;
+            }
+
+            /* ---------- 메인 콘텐츠 래퍼 ---------- */
+            .container {
+                width: 1100px;
+                margin: 0 auto;
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                padding: 20px 0 60px 0;
+            }
+
+            /* ---------- 왼쪽 : 커버 + 트랙리스트 ---------- */
+            .left-box {
+                width: 400px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .cover {
+                width: 400px;
+                height: 400px;
+                overflow: hidden;
+                border-radius: 4px;
+            }
+            .cover img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* 트랙 리스트 */
+            .track-list {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 10px;
+            }
+            .track {
+                width: 100%;
+                height: 42px;
+                border: 1px solid #dadada;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                padding: 0 14px;
+                font-size: 13px;
+            }
+            .track .play {
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                border: 1px solid #ccc;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 12px;
+            }
+            .play::before {
+                content: "";
+                border-style: solid;
+                border-width: 6px 0 6px 10px;
+                border-color: transparent transparent transparent #333;
+                margin-left: 2px;
+            }
+            .track .time {
+                margin-left: auto;
+                color: #666;
+                font-size: 12px;
+            }
+
+            /* ---------- 오른쪽 : 앨범 텍스트 ---------- */
+            .right-box {
+                width: 600px;
+                padding-top: 10px;
+            }
+            .album-title {
+                font-size: 28px;
+                font-weight: 700;
+                margin-bottom: 2px;
+            }
+            .album-sub {
+                font-size: 14px;
+                color: #444;
+                font-weight: 600;
+                margin-bottom: 16px;
+            }
+            .album-date {
+                font-size: 13px;
+                color: #666;
+                margin-bottom: 20px;
+            }
+            .desc {
+                font-size: 14px;
+                color: #444;
+                line-height: 1.7;
+                white-space: pre-line;
+            }
+            .btn-style {
+                display: inline-block;
+                padding: 10px 20px;
+                margin: 5px;
+                border-radius: 20px;
+                text-decoration: none;
+                font-family: sans-serif;
+                font-size: 14px;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                background-color: #ffffff;
+                color: #333333;
+                border: 1px solid #cccccc;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn-style.active {
+                background-color: #e2e2e2;
+                color: #333333;
+                border: 1px solid #aaaaaa;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
+                    inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn-style:hover:not(.active) {
+                background-color: #f0f0f0;
+                color: #333333;
+                border: 1px solid #aaaaaa;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
+                    inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            }
+
+            .btn-style.active:hover {
+                background-color: #e0e0e0;
+            }
+
+            @media (min-width: 769px) {
+                .menu-btn {
+                    display: none;
+                }
+            }
+
+            :root {
+                --bg: #ffe9f6;
+                --pink: #d76fa1; /* 진한 핑크 */
+                --pink-muted: #d76fa1; /* 살짝 흐린 핑크 */
+                --max-width: 1200px;
+            }
+
+            .site-footer {
+                background: var(--bg);
+                color: var(--pink);
+                padding: 28px 20px; /* 위아래 동일 여백 */
+                font-family: "Inter", "Noto Sans KR", sans-serif;
+                font-size: 13px; /* 기본 글자 크기 축소 */
+                margin-top: 30px;
+            }
+
+            .footer-inner {
+                max-width: var(--max-width);
+                margin: 0 auto;
+                display: flex;
+                align-items: center; /* 위아래 균형 잡힌 정렬 */
+                justify-content: space-between;
+                gap: 24px;
+            }
+
+            /* LEFT: 브랜드 */
+            .footer-left .brand {
+                margin: 0;
+                font-size: 14px; /* 더 작게 */
+                letter-spacing: 2px;
+                font-weight: 600;
+                color: var(--pink);
+                text-transform: uppercase;
+            }
+            .footer-left .tagline {
+                margin: 6px 0 0 0;
+                color: var(--pink-muted);
+                font-size: 12px;
+                line-height: 1.25;
+            }
+
+            /* RIGHT: 저작권 문구 */
+            .footer-right {
+                text-align: right;
+            }
+            .footer-right .legal-line {
+                margin: 0;
+                color: var(--pink-muted);
+                font-size: 12px;
+                line-height: 1.3;
+            }
+
+            /* 반응형 */
+            @media (max-width: 720px) {
+                .footer-inner {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    gap: 10px;
+                }
+                .footer-right {
+                    text-align: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <a href="index.html">
+                <div class="logo-left">
+                    <img src="Illit_logo.png" alt="left logo" /></div
+            ></a>
+            <nav>
+                <a href="gallery.html">GALLERY</a>
+                <a href="items.html">ITEMS</a>
+                <a href="profile.html">PROFILE</a>
+                <a href="discography.html" class="active">DISCOGRAPHY</a>
+                <a href="video1.html">VIDEO</a>
+            </nav>
+        </header>
+        <div class="album-tabs">
+            <a href="discography1.html" class="btn-style active">1st Mini</a>
+            <a href="discography2.html" class="btn-style">2nd Mini</a>
+            <a href="discography3.html" class="btn-style">3rd Mini</a>
+            <a href="discography4.html" class="btn-style">1st Single</a>
+        </div>
+
+        <!-- 메인 -->
+        <div id="album1" class="container">
+            <!-- 왼쪽 -->
+            <div class="left-box">
+                <div class="cover"><img src="album1.png" alt="" /></div>
+
+                <div class="tracklist">
+                    <p>TRACKLIST 🎧</p>
+                    <audio src="My World - ILLIT.mp3" controls></audio>
+                    <audio
+                        src="ILLIT (아일릿) ‘Magnetic’ Official MV - HYBE LABELS.mp3"
+                        controls
+                    ></audio>
+                    <audio src="Midnight Fiction - ILLIT.mp3" controls></audio>
+                    <audio
+                        src="ILLIT (아일릿) 'Lucky Girl Syndrome' Official MV - HYBE LABELS.mp3"
+                        controls
+                    ></audio>
+                </div>
+            </div>
+
+            <!-- 오른쪽 -->
+            <div class="right-box">
+                <div class="album-title">SUPER REAL ME</div>
+                <div class="album-sub">1st Mini Album</div>
+                <div class="album-date">2024.03.23 (토) 18:00 발매</div>
+
+                <div>
+                    아일릿의 상상력 담았다! 엉뚱하고 재기 발랄한 아일릿의 REAL
+                    이야기 ‘SUPRE REAL ME’는 순간에 과몰입한 소녀들의 이야기를
+                    총 4개의 트랙으로 녹였다. <br /><br />5세대 여자 아이돌 중
+                    슈퍼 이끌림 ‘아일릿’ 타이틀곡 ‘Magnetic’… 좋아하는 너에게
+                    “슈퍼 이끌림” 솔직+과감 10대 사랑법. 엉뚱하고 재치 넘치는
+                    아일릿의 아이덴티티는 데뷔 타이틀곡으로 확인할 수 있다.
+                    타이틀곡 ‘Magnetic’은 좋아하는 너에게 직진하는 10대 소녀의
+                    솔직 당당함을, 어디로 튈지 모르는 음률과 아일릿의 풋풋한
+                    음색으로 그린다. <br /><br />내 눈에 비친 세상을 표현한 ‘My
+                    World’, 좋아하는 너를 향해 직진하는 마음을 노래한 타이틀곡
+                    ‘Magnetic’, 잠이 오지 않는 상상의 나래를 펼친 ‘Midnight
+                    Fiction’, 세상에서 내가 제일 행운아라고 느끼는 순간을 담은
+                    ‘Lucky Girl Syndrome’ 등 다채로운 장르의 곡이 앨범을
+                    풍성하게 채웠다.
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer" role="contentinfo">
+            <div class="footer-inner">
+                <!-- LEFT: first two lines -->
+                <div class="footer-left">
+                    <h4 class="brand">NOT CUTE ANYMORE</h4>
+                    <p class="tagline">
+                        A conceptual reinterpretation of I’LL-IT.
+                    </p>
+                </div>
+
+                <!-- RIGHT: last three lines -->
+                <div class="footer-right">
+                    <p class="legal-line">© 2025 Not Cute Anymore Project.</p>
+                    <p class="legal-line">
+                        This is an independent, fan-made portfolio site.
+                    </p>
+                    <p class="legal-line">
+                        All images, videos, and trademarks belong to their
+                        respective owners.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

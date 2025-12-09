@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: "Helvetica", sans-serif;
+                background: white;
+            }
+
+            .header {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 25px 60px;
+                box-sizing: border-box;
+            }
+
+            .logo-left img {
+                height: 35px;
+                object-fit: contain;
+            }
+
+            nav a {
+                margin-left: 35px;
+                text-decoration: none;
+                color: black;
+                font-size: 17px;
+                font-weight: 600;
+                position: relative;
+            }
+
+            nav a.active {
+                color: black;
+                font-weight: 700;
+                padding: 3px 6px;
+                background: #f3e0f5;
+                border-radius: 4px;
+            }
+            .rounded-video {
+                width: 100%;
+                margin-top: 20vh;
+                /* margin-left: 20vw; */
+                margin-right: 20vw;
+                border-radius: 25px; /* 원하는 만큼 조절 */
+                overflow: hidden; /* 둥근 영역 밖 내용을 잘라냄 */
+                display: block;
+            }
+            .btn-style {
+                display: inline-block;
+                padding: 10px 20px;
+                margin: 5px;
+                border-radius: 20px;
+                text-decoration: none;
+                font-family: sans-serif;
+                font-size: 14px;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                background-color: #ffffff;
+                color: #333333;
+                border: 1px solid #cccccc;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn-style.active {
+                background-color: #f0f0f0;
+                color: #333333;
+                border: 1px solid #aaaaaa;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
+                    inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn-style:hover:not(.active) {
+                background-color: #f0f0f0;
+                color: #333333;
+                border: 1px solid #aaaaaa;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
+                    inset 0 1px 3px rgba(0, 0, 0, 0.05);
+            }
+
+            .btn-style.active:hover {
+                background-color: #e0e0e0;
+            }
+            .album-tabs {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                gap: 26px;
+                padding: 30px 0 20px;
+            }
+            .album-tabs button {
+                padding: 8px 40px;
+                font-size: 14px;
+                border-radius: 20px;
+                border: 1px solid #cfcfcf;
+                background: #fff;
+                cursor: pointer;
+            }
+            .album-tabs button:hover {
+                background: #f2f2f2;
+            }
+            .video-container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .video-wrapper {
+                position: relative;
+                height: 0;
+                padding-bottom: 56.25%;
+                border: 1px solid black;
+                border-radius: 12px;
+                overflow: hidden;
+            }
+
+            .video-wrapper .my-local-video {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                width: 100%;
+                height: 100%;
+            }
+
+            .video-info {
+                font-size: 0.9em;
+                line-height: 1.4;
+                margin-top: 20px;
+                color: #555;
+            }
+
+            .copyright {
+                font-size: 0.8em;
+                text-align: right;
+                margin-top: -0px;
+                color: #888;
+            }
+            .album-tabs {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                gap: 26px;
+                padding: 30px 0 20px;
+            }
+            .album-tabs button {
+                padding: 8px 40px;
+                font-size: 14px;
+                border-radius: 20px;
+                border: 1px solid #cfcfcf;
+                background: #fff;
+                cursor: pointer;
+            }
+            .album-tabs button:hover {
+                background: #f2f2f2;
+            }
+            :root {
+                --bg: #ffe9f6;
+                --pink: #d76fa1; /* 진한 핑크 */
+                --pink-muted: #d76fa1; /* 살짝 흐린 핑크 */
+                --max-width: 1200px;
+            }
+
+            .site-footer {
+                background: var(--bg);
+                color: var(--pink);
+                padding: 28px 20px; /* 위아래 동일 여백 */
+                font-family: "Inter", "Noto Sans KR", sans-serif;
+                font-size: 13px; /* 기본 글자 크기 축소 */
+                margin-top: 30px;
+            }
+
+            .footer-inner {
+                max-width: var(--max-width);
+                margin: 0 auto;
+                display: flex;
+                align-items: center; /* 위아래 균형 잡힌 정렬 */
+                justify-content: space-between;
+                gap: 24px;
+            }
+
+            /* LEFT: 브랜드 */
+            .footer-left .brand {
+                margin: 0;
+                font-size: 14px; /* 더 작게 */
+                letter-spacing: 2px;
+                font-weight: 600;
+                color: var(--pink);
+                text-transform: uppercase;
+            }
+            .footer-left .tagline {
+                margin: 6px 0 0 0;
+                color: var(--pink-muted);
+                font-size: 12px;
+                line-height: 1.25;
+            }
+
+            /* RIGHT: 저작권 문구 */
+            .footer-right {
+                text-align: right;
+            }
+            .footer-right .legal-line {
+                margin: 0;
+                color: var(--pink-muted);
+                font-size: 12px;
+                line-height: 1.3;
+            }
+
+            /* 반응형 */
+            @media (max-width: 720px) {
+                .footer-inner {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    gap: 10px;
+                }
+                .footer-right {
+                    text-align: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="header">
+            <a href="index.html">
+                <div class="logo-left">
+                    <img src="Illit_logo.png" alt="left logo" /></div
+            ></a>
+            <nav>
+                <a href="gallery.html">GALLERY</a>
+                <a href="items.html">ITEMS</a>
+                <a href="profile.html">PROFILE</a>
+                <a href="discography1.html">DISCOGRAPHY</a>
+                <a href="video1.html" class="active">VIDEO</a>
+            </nav>
+        </header>
+        <div class="album-tabs">
+            <a href="video1.html" class="btn-style">1st Mini</a>
+            <a href="video2.html" class="btn-style">2nd Mini</a>
+            <a href="video3.html" class="btn-style">3rd Mini</a>
+            <a href="video4.html" class="btn-style active">1st Single</a>
+        </div>
+        <div class="video-container">
+            <h2 class="video-title">
+                ILLIT (아일릿) 'NOT CUTE ANYMORE’ Official MV
+            </h2>
+
+            <div class="video-wrapper">
+                <video class="my-local-video" controls>
+                    <source
+                        src="ILLIT (아일릿) 'NOT CUTE ANYMORE’ Official MV - HYBE LABELS (720p, h264).mp4"
+                        type="video/mp4"
+                    />
+                </video>
+            </div>
+
+            <div class="video-info">
+                <p>
+                    Executive Producer Taeho Kim<br />
+                    Creative Director Serian Heu<br />
+                    Music Video Director Kwanggoeng Yu
+                </p>
+            </div>
+            <p class="copyright">© BELIFT LAB Inc. All Rights Reserved</p>
+        </div>
+    </body>
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-inner">
+            <!-- LEFT: first two lines -->
+            <div class="footer-left">
+                <h4 class="brand">NOT CUTE ANYMORE</h4>
+                <p class="tagline">A conceptual reinterpretation of I’LL-IT.</p>
+            </div>
+
+            <!-- RIGHT: last three lines -->
+            <div class="footer-right">
+                <p class="legal-line">© 2025 Not Cute Anymore Project.</p>
+                <p class="legal-line">
+                    This is an independent, fan-made portfolio site.
+                </p>
+                <p class="legal-line">
+                    All images, videos, and trademarks belong to their
+                    respective owners.
+                </p>
+            </div>
+        </div>
+    </footer>
+</html>
